@@ -3,6 +3,7 @@ import { Button } from "@proxyshard/shardx-ui-kit";
 import { HeaderMenu, PageBody, PageHeader } from "../../widgets/PageHeader";
 import { usePsAccount } from "../../entities/proxyshard";
 import { OpenDashboardButton, PsBuyDialog, PsKeyDialog, PsKeySetup } from "../../features/proxyshard";
+import { NewProfileButton } from "../../features/manage-profiles";
 import { PsHeaderFacts } from "../../widgets/ProxyShard/PsHeaderFacts";
 import { PsManagementPanels } from "../../widgets/ProxyShard/PsManagementPanels";
 import { KeyIcon, RefreshIcon } from "../../shared/icons";
@@ -14,7 +15,9 @@ type View = "panels" | "setup";
 
 /// The stat tiles, Usage and Orders, across the window's width (owner,
 /// 2026-10-23: no 1120 px cap). Buy proxies sits in the header's actions,
-/// before Open dashboard (owner, 2026-10-02). Without a
+/// before Open dashboard (owner, 2026-10-02). New profile follows both, stroke
+/// like them: this header still has no filled primary (F3). It needs no key, so
+/// it shows in both views. Without a
 /// working key the key card is the page; with one, the key moves to the `…`
 /// menu (craft target state, rank 2).
 export function ProxyShardPage() {
@@ -48,6 +51,7 @@ export function ProxyShardPage() {
               <Button variant="neutral" mode="stroke" size="xsmall" onClick={() => setBuying(true)}>{t("psBuyCard.open")}</Button>
             )}
             <OpenDashboardButton />
+            <NewProfileButton mode="stroke" />
             {view === "panels" && (
               <HeaderMenu
                 items={[
